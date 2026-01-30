@@ -46,6 +46,10 @@ export default class ItemPurchaseTool extends NavigationMixin(LightningElement) 
         this.loadFilterOptions();
         this.loadItems();
     }
+    get selectedItem() {
+    return this.items.find(i => i.Id === this.selectedItemId);
+    }
+
 
     
     loadFilterOptions() {
@@ -212,8 +216,23 @@ export default class ItemPurchaseTool extends NavigationMixin(LightningElement) 
 }
 
    
-    get cartLabel() { return `Cart (${this.cart.length})`; }
-    get cartTotal() { return this.cart.reduce((sum, i) => sum + i.Price__c * i.quantity, 0); }
-    get accountNumberDisplay() { return this.account?.data?.fields?.AccountNumber?.value || 'N/A'; }
-    get accountIndustryDisplay() { return this.account?.data?.fields?.Industry?.value || 'N/A'; }
+    get cartLabel() {
+    const totalQty = this.cart.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+    );
+    return `Cart (${totalQty})`;
+}
+
+
+
+    get cartTotal()  {
+         return this.cart.reduce((sum, i) => sum + i.Price__c * i.quantity, 0); 
+     }
+    get accountNumberDisplay() {
+         return this.account?.data?.fields?.AccountNumber?.value || 'N/A'; 
+        }
+    get accountIndustryDisplay() {
+         return this.account?.data?.fields?.Industry?.value || 'N/A';
+         }
 }
