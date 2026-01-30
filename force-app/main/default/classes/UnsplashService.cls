@@ -1,6 +1,6 @@
 public with sharing class UnsplashService {
 
-    // Публичный Access Key для Unsplash
+    
     private static final String ACCESS_KEY = 'zbl-rH_AiHUgr8EdGBpzeJ3uLK4MiwnMO33sfJhZTMI';
     private static final String PLACEHOLDER = 'https://via.placeholder.com/300x200?text=No+Image';
 

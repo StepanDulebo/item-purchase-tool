@@ -8,7 +8,7 @@ public with sharing class PurchaseService {
 
         Purchase__c purchase = new Purchase__c(
             ClientId__c = accountId
-            // Name заполнится автоматически если Auto Number
+            
         );
         insert purchase;
 
@@ -23,7 +23,7 @@ public with sharing class PurchaseService {
         }
         insert lines;
 
-        // Trigger сам обновит TotalItems и GrandTotal
+        
         return purchase.Id;
     }
 }
