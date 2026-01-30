@@ -7,22 +7,22 @@ public class ItemControllerTest {
             new Item__c(
                 Name = 'iPhone',
                 Description__c = 'Apple phone',
-                Type__c = 'Electronics',
-                Family__c = 'Mobile',
+                Type__c = 'Hardware',
+                Family__c = 'Electronics',
                 Price__c = 999
             ),
             new Item__c(
                 Name = 'Galaxy',
                 Description__c = 'Samsung phone',
-                Type__c = 'Electronics',
-                Family__c = 'Mobile',
+                Type__c = 'Service',
+                Family__c = 'Electronics',
                 Price__c = 899
             ),
             new Item__c(
                 Name = 'Office Chair',
                 Description__c = 'Comfortable chair',
-                Type__c = 'Furniture',
-                Family__c = 'Office',
+                Type__c = 'Hardware',
+                Family__c = 'Clothing',
                 Price__c = 199
             )
         };
@@ -43,7 +43,7 @@ public class ItemControllerTest {
     @IsTest
     static void testGetItemsWithTypeFilter() {
         Test.startTest();
-        List<Item__c> result = ItemController.getItems('Electronics', null, null);
+        List<Item__c> result = ItemController.getItems('Hardware', null, null);
         Test.stopTest();
 
         System.assertEquals(2, result.size(), 'Should filter by Type__c');
@@ -52,10 +52,10 @@ public class ItemControllerTest {
     @IsTest
     static void testGetItemsWithFamilyFilter() {
         Test.startTest();
-        List<Item__c> result = ItemController.getItems(null, 'Office', null);
+        List<Item__c> result = ItemController.getItems(null, 'Electronics', null);
         Test.stopTest();
 
-        System.assertEquals(1, result.size(), 'Should filter by Family__c');
+        System.assertEquals(2, result.size(), 'Should filter by Family__c');
     }
 
     @IsTest
@@ -79,11 +79,11 @@ public class ItemControllerTest {
         System.assert(options.containsKey('type'), 'Type options should exist');
         System.assert(options.containsKey('family'), 'Family options should exist');
 
-        System.assert(options.get('type').contains('Electronics'));
-        System.assert(options.get('type').contains('Furniture'));
+        System.assert(options.get('type').contains('Hardware'));
+        System.assert(options.get('type').contains('Service'));
 
-        System.assert(options.get('family').contains('Mobile'));
-        System.assert(options.get('family').contains('Office'));
+        System.assert(options.get('family').contains('Clothing'));
+        System.assert(options.get('family').contains('Electronics'));
     }
 
     
